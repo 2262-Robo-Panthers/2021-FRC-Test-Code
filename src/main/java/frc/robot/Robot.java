@@ -17,13 +17,8 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-
-  RobotInterface robotInterface = new RobotInterface(new Settings());
-
   @Override
-  public void robotInit() {
-    robotInterface.drive.init();
-  }
+  public void robotInit() {}
 
   @Override
   public void robotPeriodic() {}
@@ -38,9 +33,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {}
 
   @Override
-  public void teleopPeriodic() {
-    robotInterface.drive.run();
-  }
+  public void teleopPeriodic() {}
 
   @Override
   public void disabledInit() {}
