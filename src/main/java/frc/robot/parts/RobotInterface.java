@@ -23,7 +23,7 @@ public class RobotInterface {
         this.settings = settings;
         robotInterfaceSettings = settings.robotInterfaceSettings;
         hardware = new Hardware(settings.hardwareSettings);
-        if(settings.usageSettings.useDrive) drive = new Drive(settings.driveSettings);
+        if(settings.usageSettings.useDrive) drive = new Drive(this, settings.driveSettings);
         if(settings.usageSettings.useClimb) climb = new Climb(settings.climbSettings);
         if(settings.usageSettings.useConveyor) conveyor = new Conveyor(settings.conveyorSettings);
     }
