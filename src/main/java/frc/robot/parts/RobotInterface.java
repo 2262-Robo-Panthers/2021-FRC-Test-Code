@@ -7,15 +7,15 @@ public class RobotInterface {
     Settings settings;
     RobotInterfaceSettings robotInterfaceSettings;
     Hardware hardware;
-    Drive drive;
-    Climb climb;
-    Conveyor conveyor;
+    public Drive drive;
+    public Climb climb;
+    public Conveyor conveyor;
 
     RobotInterface() {
         construct(new Settings());
     }
 
-    RobotInterface(Settings settings) {
+    public RobotInterface(Settings settings) {
         construct(settings);
     }
 
@@ -23,7 +23,12 @@ public class RobotInterface {
         this.settings = settings;
         robotInterfaceSettings = settings.robotInterfaceSettings;
         hardware = new Hardware(settings.hardwareSettings);
-        if(settings.usageSettings.useDrive) drive = new Drive(this, settings.driveSettings);
+        hardware.initBaseHardware();
+
+        if(settings.usageSettings.useDrive){
+            hardware.initDrive();
+            drive = new Drive(this, settings.driveSettings);
+        }
         if(settings.usageSettings.useClimb) climb = new Climb(settings.climbSettings);
         if(settings.usageSettings.useConveyor) conveyor = new Conveyor(settings.conveyorSettings);
     }

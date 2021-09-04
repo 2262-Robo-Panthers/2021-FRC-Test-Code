@@ -2,7 +2,7 @@ package frc.robot.parts;
 
 import frc.robot.settings.ClimbSettings;
 
-class Climb {
+public class Climb {
     ClimbSettings climbSettings;
 
     Climb() {

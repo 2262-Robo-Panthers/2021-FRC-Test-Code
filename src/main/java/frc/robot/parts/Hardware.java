@@ -1,7 +1,5 @@
 package frc.robot.parts;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.settings.HardwareSettings;
+import jdk.nashorn.internal.objects.annotations.Function;
 
 class Hardware {
     HardwareSettings hardwareSettings;
@@ -32,6 +31,10 @@ class Hardware {
         this.hardwareSettings = hardwareSettings;
     }
 
+    void initBaseHardware(){
+        initControllers();
+    }
+
     void initControllers(){
         XBoi = new XboxController(hardwareSettings.XBoiPort);
         Logi = new Joystick(hardwareSettings.LogiPort);
@@ -50,33 +53,7 @@ class Hardware {
         setMotorOpenLoopRampTime(driveMotors, hardwareSettings.driveOpenLoopRampTime);
     }
 
-    void setMotorNeutralMode(List<WPI_TalonFX> motors, NeutralMode neutralMode){
-        for(int i = 0; i < motors.size(); i++){
-            motors.get(i).setNeutralMode(neutralMode);
-        }
-    }
-
-    void setMotorOpenLoopRampTime(List<WPI_TalonFX> motors, double time){
-        for(int i = 0; i < motors.size(); i++){
-            motors.get(i).configOpenloopRamp(time);
-        }
-    }
-
-    void setMotorDir(List<WPI_TalonFX> motors, boolean[] dir){
-        for(int i = 0; i < motors.size(); i++){
-            motors.get(i).setInverted(dir[i]);
-        }
-    }
-
-    void setMotorPowers(List<WPI_TalonFX> motors, double power){
-        for(int i = 0; i < motors.size(); i++){
-            motors.get(i).set(power);
-        }
-    }
-
-    void setMotorPowers(List<WPI_TalonFX> motors, double[] powers){
-        for(int i = 0; i < motors.size(); i++){
-            motors.get(i).set(powers[i]);
-        }
+    void runMethodOnMotors(List<Object> motors){
+        motors.get(1).getClass().cast(motors.get(0)).set(1);
     }
 }

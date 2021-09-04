@@ -2,7 +2,7 @@ package frc.robot.parts;
 
 import frc.robot.settings.ConveyorSettings;
 
-class Conveyor {
+public class Conveyor {
     ConveyorSettings conveyorSettings;
 
     Conveyor() {

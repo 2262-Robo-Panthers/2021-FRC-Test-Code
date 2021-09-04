@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.parts.RobotInterface;
+import frc.robot.settings.Settings;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,8 +19,13 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
+  RobotInterface robotInterface = new RobotInterface(new Settings());
+
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+    robotInterface.init();
+  }
 
   @Override
   public void robotPeriodic() {}
@@ -30,7 +37,9 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {}
 
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+
+  }
 
   @Override
   public void teleopPeriodic() {}
