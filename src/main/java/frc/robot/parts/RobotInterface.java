@@ -26,19 +26,42 @@ public class RobotInterface {
         hardware = new Hardware(settings.hardwareSettings);
         hardware.constructBaseHardware();
 
-        if(settings.usageSettings.useDrive){
+        if (settings.usageSettings.useDrive) {
             hardware.constructDrive();
             drive = new Drive(this, settings.driveSettings);
         }
-        if(settings.usageSettings.useClimb) climb = new Climb(settings.climbSettings);
-        if(settings.usageSettings.useConveyor) conveyor = new Conveyor(settings.conveyorSettings);
+        if (settings.usageSettings.useClimb) {
+            hardware.constructClimb();
+            climb = new Climb(settings.climbSettings);
+        }
+        if (settings.usageSettings.useConveyor) {
+            hardware.constructConveyor();
+            conveyor = new Conveyor(settings.conveyorSettings);
+        }
+        if (settings.usageSettings.useLauncher) {
+            hardware.constructLauncher();
+            launcher = new Launcher(settings.launcherSettings);
+        }
     }
 
     public void init() {
         hardware.initBaseHardware();
-        if(settings.usageSettings.useDrive){
+
+        if (settings.usageSettings.useDrive) {
             hardware.initDrive();
             drive.init();
+        }
+        if (settings.usageSettings.useClimb) {
+            hardware.initClimb();
+            climb.init();
+        }
+        if (settings.usageSettings.useConveyor) {
+            hardware.initConveyor();
+            conveyor.init();
+        }
+        if (settings.usageSettings.useLauncher) {
+            hardware.initLauncher();
+            launcher.init();
         }
     }
 }

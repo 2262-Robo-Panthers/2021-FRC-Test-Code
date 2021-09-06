@@ -12,4 +12,6 @@ public class Climb {
     Climb(ClimbSettings climbSettings) {
         this.climbSettings = climbSettings;
     }
+
+    void init(){}
 }

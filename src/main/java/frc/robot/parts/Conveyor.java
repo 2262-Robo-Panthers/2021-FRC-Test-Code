@@ -12,4 +12,6 @@ public class Conveyor {
     Conveyor(ConveyorSettings conveyorSettings) {
         this.conveyorSettings = conveyorSettings;
     }
+
+    void init(){}
 }

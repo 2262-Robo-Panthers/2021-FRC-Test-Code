@@ -8,7 +8,10 @@ public class Launcher {
     Launcher(){
         launcherSettings = new LauncherSettings();
     }
+
     Launcher(LauncherSettings launcherSettings){
         this.launcherSettings = launcherSettings;
     }
+
+    void init(){}
 }
