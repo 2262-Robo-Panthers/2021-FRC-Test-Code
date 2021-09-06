@@ -1,5 +1,6 @@
 package frc.robot.parts;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.settings.DriveSettings;
 
 public class Drive {
@@ -16,11 +17,21 @@ public class Drive {
         this.driveSettings = driveSettings;
     }
 
-    public void moveForTeleOp(){
+    public void init(){}
 
+    public void moveForTeleOp(boolean telemetry){
+        moveRobot(driveSettings.driveXSupplier.apply(robotInterface.hardware.XBoi), driveSettings.driveYSupplier.apply(robotInterface.hardware.XBoi), driveSettings.driveRSupplier.apply(robotInterface.hardware.XBoi));
+        if(telemetry)
+            addTelemetry();
     }
 
-    double[] robotMovePowers(double X, double Y, double R, DriveSettings.DriveMode driveMode, boolean cap) {
+    void addTelemetry(){
+        SmartDashboard.putNumber("xSupplier", driveSettings.driveXSupplier.apply(robotInterface.hardware.XBoi));
+        SmartDashboard.putNumber("ySupplier", driveSettings.driveYSupplier.apply(robotInterface.hardware.XBoi));
+        SmartDashboard.putNumber("rSupplier", driveSettings.driveRSupplier.apply(robotInterface.hardware.XBoi));
+    }
+
+    double[] getRobotMovePowers(double X, double Y, double R, DriveSettings.DriveMode driveMode, boolean cap) {
         //get motor powers
         double[] arr = new double[4];
         if (driveMode == DriveSettings.DriveMode.TANK) {
@@ -58,7 +69,15 @@ public class Drive {
         return arr;
     }
 
-    double[] robotMovePowers(double X, double Y, double R){
-        return robotMovePowers(X, Y, R, driveSettings.driveMode, true);
+    double[] getRobotMovePowers(double X, double Y, double R){
+        return getRobotMovePowers(X, Y, R, driveSettings.driveMode, true);
+    }
+
+    void moveRobot(double X, double Y, double R, DriveSettings.DriveMode driveMode, boolean cap){
+        robotInterface.hardware.setMethodOnObjectsAdv(robotInterface.hardware.driveMotors, "set", new Class[]{Double.class}, getRobotMovePowers(X, Y, R, driveMode, cap));
+    }
+
+    void moveRobot(double X, double Y, double R){
+        moveRobot(X, Y, R, driveSettings.driveMode, true);
     }
 }

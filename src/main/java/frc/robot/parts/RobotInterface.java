@@ -10,6 +10,7 @@ public class RobotInterface {
     public Drive drive;
     public Climb climb;
     public Conveyor conveyor;
+    public Launcher launcher;
 
     RobotInterface() {
         construct(new Settings());
@@ -23,10 +24,10 @@ public class RobotInterface {
         this.settings = settings;
         robotInterfaceSettings = settings.robotInterfaceSettings;
         hardware = new Hardware(settings.hardwareSettings);
-        hardware.initBaseHardware();
+        hardware.constructBaseHardware();
 
         if(settings.usageSettings.useDrive){
-            hardware.initDrive();
+            hardware.constructDrive();
             drive = new Drive(this, settings.driveSettings);
         }
         if(settings.usageSettings.useClimb) climb = new Climb(settings.climbSettings);
@@ -34,6 +35,10 @@ public class RobotInterface {
     }
 
     public void init() {
-
+        hardware.initBaseHardware();
+        if(settings.usageSettings.useDrive){
+            hardware.initDrive();
+            drive.init();
+        }
     }
 }

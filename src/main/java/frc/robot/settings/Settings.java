@@ -7,6 +7,7 @@ public class Settings {
     public DriveSettings driveSettings;
     public ClimbSettings climbSettings;
     public ConveyorSettings conveyorSettings;
+    public LauncherSettings launcherSettings;
 
     public Settings() {
         robotInterfaceSettings = new RobotInterfaceSettings();
