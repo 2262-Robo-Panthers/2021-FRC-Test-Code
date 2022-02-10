@@ -1,8 +1,7 @@
-package frc.robot.parts;
+package frc.robot.parts.drive;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.settings.DriveSettings;
-
+/*
 public class Drive {
     RobotInterface robotInterface;
     DriveSettings driveSettings;
@@ -81,3 +80,4 @@ public class Drive {
         moveRobot(X, Y, R, driveSettings.driveMode, true);
     }
 }
+*/
